@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"regexp"
 	"strconv"
 )
@@ -25,7 +23,7 @@ type Size struct {
 type Fabric [1000][1000]string
 
 func main() {
-	input := readInput()
+	input := readInput("day3")
 	fmt.Println("part1: ", part1(input))
 	fmt.Println("part2: ", part2(input))
 }
@@ -105,23 +103,4 @@ func Parse(line string) *Claim {
 		&Size{res[2], res[3]},
 	}
 	return claim
-}
-
-func readInput() []string {
-	file, err := os.Open("./day3input.txt")
-	if err != nil {
-		panic(err.Error())
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
-	var res []string
-	for scanner.Scan() {
-		if err := scanner.Err(); err != nil {
-			panic(err.Error())
-		}
-		res = append(res, scanner.Text())
-	}
-	return res
 }

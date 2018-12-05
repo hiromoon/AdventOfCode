@@ -1,14 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 )
 
 func main() {
-	input := readInput()
+	input := readInput("day1")
 	fmt.Println("Part1: ", part1(input))
 	fmt.Println("Part2: ", part2(input))
 }
@@ -74,23 +72,4 @@ func getFirstDuplicate(input []int) (bool, int) {
 	}
 
 	return found, ans
-}
-
-func readInput() []string {
-	file, err := os.Open("./day1input.txt")
-	if err != nil {
-		panic(err.Error())
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
-	var res []string
-	for scanner.Scan() {
-		if err := scanner.Err(); err != nil {
-			panic(err.Error())
-		}
-		res = append(res, scanner.Text())
-	}
-	return res
 }

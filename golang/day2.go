@@ -1,15 +1,13 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"sort"
 	"strings"
 )
 
 func main() {
-	input := readInput()
+	input := readInput("day2")
 	fmt.Println("part1: ", part1(input))
 	fmt.Println("part2: ", part2(input))
 }
@@ -86,23 +84,4 @@ func uniq(str string) string {
 	}
 
 	return strings.Join(ss, "")
-}
-
-func readInput() []string {
-	file, err := os.Open("./day2input.txt")
-	if err != nil {
-		panic(err.Error())
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
-	var res []string
-	for scanner.Scan() {
-		if err := scanner.Err(); err != nil {
-			panic(err.Error())
-		}
-		res = append(res, scanner.Text())
-	}
-	return res
 }
