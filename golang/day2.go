@@ -29,14 +29,22 @@ func part1(input []string) int {
 
 func part2(input []string) string {
 	d := []string{}
-	for i, s := range input {
+	s := []string{}
+	for i, s1 := range input {
 		for j := i + 1; j < len(input); j++ {
-			a := diff(s, input[j])
-			d = append(d, a)
-			fmt.Println("diff: ", a)
+			a := diff(s1, input[j])
+			if len(a) == 1 {
+				d = append(d, a)
+				s = append(s, s1)
+			}
 		}
 	}
-	return uniq(strings.Join(d, ""))
+	fmt.Println("diff: ", s)
+	ans := []string{}
+	for i, a := range s {
+		ans = append(ans, strings.Replace(a, d[i], "", 1))
+	}
+	return strings.Join(ans, "")
 }
 
 func diff(src string, dst string) string {
